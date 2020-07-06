@@ -1,7 +1,6 @@
-var snake;
-var scl = 20;
-
-var food;
+let snake;
+let scl = 20;
+let food;
 
 function setup() {
   createCanvas(800, 600);

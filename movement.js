@@ -14,6 +14,7 @@ function keyPressed() {
       break;
     case LEFT_ARROW:
       snake.dir(-1, 0);
+      break;
     default:
       break;
   }

@@ -1,49 +1,50 @@
 function Snake() {
-  this.x = 0;
-  this.y = 0;
-  this.sLength = 0;
   this.body = [];
+  this.change = false;
+  this.body.push(createVector(0, 0));
   this.dir = function (x, y) {
     this.xSpeed = x;
     this.ySpeed = y;
   };
 
   this.update = function () {
-    if (this.sLength - 1 === this.body.length) {
-      for (let i = 0; i < this.body.length; i++) {
-        this.body[i] = this.body[i + 1];
-      }
+    if (this.change == true) {
+      this.grow(
+        this.body[this.body.length - 1].x - this.xSpeed * scl,
+        this.body[this.body.length - 1].y - this.ySpeed * scl
+      );
+      this.change = false;
     }
+    for (let i = this.body.length - 1; i > 0; i--) {
+      this.body[i].x = this.body[i - 1].x;
+      this.body[i].y = this.body[i - 1].y;
+    }
+    this.body[0].x = this.body[0].x + this.xSpeed * scl;
+    this.body[0].y = this.body[0].y + this.ySpeed * scl;
 
-    this.body[this.sLength - 1] = createVector(this.x, this.y);
-    console.log(this.body[this.sLength - 1]);
-
-    this.x = this.x + this.xSpeed * scl;
-    this.y = this.y + this.ySpeed * scl;
-    this.x = constrain(this.x, 0, width - scl);
-    this.y = constrain(this.y, 0, height - scl);
+    this.body[0].x = constrain(this.body[0].x, 0, width - scl);
+    this.body[0].y = constrain(this.body[0].y, 0, height - scl);
   };
 
   this.show = function () {
-    console.log(this.sLength);
-
     fill(136, 202, 94);
-    for (let i = 0; i < this.body.length; i++) {
+    for (let i = 1; i < this.body.length; i++) {
       rect(this.body[i].x, this.body[i].y, scl, scl);
     }
-    rect(this.x, this.y, scl, scl);
+    rect(this.body[0].x, this.body[0].y, scl, scl);
   };
 
   this.eat = function (pos) {
-    let d = dist(this.x, this.y, pos.x, pos.y);
+    let d = dist(this.body[0].x, this.body[0].y, pos.x, pos.y);
     if (d < 1) {
-      this.sLength++;
-      this.grow(pos);
+      this.change = true;
       return true;
     } else {
       return false;
     }
   };
 
-  this.grow = function (pos) {};
+  this.grow = function (x, y) {
+    this.body.push(createVector(x, y));
+  };
 }
