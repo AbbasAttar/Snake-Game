@@ -3,3 +3,13 @@
   padding: 0px;
   box-sizing: border-box;
 }
+#sketch-div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+canvas {
+  padding: 5px;
+}

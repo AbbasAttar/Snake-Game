@@ -3,7 +3,8 @@ let scl = 20;
 let food;
 
 function setup() {
-  createCanvas(800, 600);
+  let canvas = createCanvas(800, 600);
+  canvas.parent("sketch-div");
   snake = new Snake();
   frameRate(10);
   snake.dir(0, 0);
@@ -15,7 +16,13 @@ function pickLocation() {
   let rows = floor(height / scl);
   food = createVector(floor(random(cols)), floor(random(rows)));
   food.mult(scl);
-  // console.log(cols, rows, food);
+  // console.log(food);
+  for (let i = 0; i < snake.body.length; i++) {
+    if (food.x === snake.body[i].x && food.y === snake.body[i].y) {
+      pickLocation();
+      break;
+    }
+  }
 }
 
 function draw() {
