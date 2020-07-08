@@ -5,7 +5,7 @@ let food;
 function setup() {
   let canvas = createCanvas(800, 600);
   canvas.parent("sketch-div");
-  snake = new Snake();
+  snake = new Snake(width, height);
   frameRate(10);
   snake.dir(0, 0);
   pickLocation();
@@ -27,13 +27,16 @@ function pickLocation() {
 
 function draw() {
   background(51);
-  snake.update();
-  snake.show();
-
-  if (snake.eat(food)) {
-    pickLocation();
+  if (snake.isNotDead(snake.body[0].x, snake.body[0].y)) {
+    snake.update();
+    snake.show();
+    if (snake.eat(food)) {
+      pickLocation();
+    }
+    fill(255, 0, 100);
+    rect(food.x, food.y, scl, scl);
+  } else {
+    snake.reset();
   }
-
-  fill(255, 0, 100);
-  rect(food.x, food.y, scl, scl);
+  // console.log(snake.isNotDead(snake.body[0].x, snake.body[0].y));
 }

@@ -1,7 +1,9 @@
-function Snake() {
+function Snake(width, height) {
+  this.width = width;
+  this.height = height;
   this.body = [];
   this.change = false;
-  this.body.push(createVector(0, 0));
+  this.body.push(createVector(this.width / 4, this.height / 2));
   this.dir = function (x, y) {
     this.xSpeed = x;
     this.ySpeed = y;
@@ -19,11 +21,27 @@ function Snake() {
       this.body[i].x = this.body[i - 1].x;
       this.body[i].y = this.body[i - 1].y;
     }
-    this.body[0].x = this.body[0].x + this.xSpeed * scl;
-    this.body[0].y = this.body[0].y + this.ySpeed * scl;
-
-    this.body[0].x = constrain(this.body[0].x, 0, width - scl);
-    this.body[0].y = constrain(this.body[0].y, 0, height - scl);
+    if (
+      this.body[0].x !== this.width &&
+      this.body[0].y !== this.height &&
+      (this.body[0].x !== 0 || this.xSpeed !== -1) &&
+      (this.body[0].y !== 0 || this.ySpeed !== -1)
+    ) {
+      this.body[0].x = this.body[0].x + this.xSpeed * scl;
+      this.body[0].y = this.body[0].y + this.ySpeed * scl;
+    } else if (this.body[0].x === width) {
+      this.body[0].x = 0;
+      this.body[0].y = this.body[0].y + this.ySpeed * scl;
+    } else if (this.body[0].y === height) {
+      this.body[0].x = this.body[0].x + this.xSpeed * scl;
+      this.body[0].y = 0;
+    } else if (this.body[0].x === 0 && this.xSpeed === -1) {
+      this.body[0].x = width - 20;
+      this.body[0].y = this.body[0].y + this.ySpeed * scl;
+    } else if (this.body[0].y === 0 && this.ySpeed === -1) {
+      this.body[0].x = this.body[0].x + this.xSpeed * scl;
+      this.body[0].y = height - 20;
+    }
   };
 
   this.show = function () {
@@ -46,5 +64,20 @@ function Snake() {
 
   this.grow = function (x, y) {
     this.body.push(createVector(x, y));
+  };
+
+  this.isNotDead = function (x, y) {
+    for (let i = 3; i < this.body.length; i++) {
+      if (x === this.body[i].x && y === this.body[i].y) {
+        return false;
+      }
+    }
+    return true;
+  };
+
+  this.reset = function () {
+    this.body = [];
+    this.body.push(createVector(0, 0));
+    this.dir(0, 0);
   };
 }

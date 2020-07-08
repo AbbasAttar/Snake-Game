@@ -1,19 +1,39 @@
 function keyPressed() {
+  this.lastKey = 0;
   switch (keyCode) {
     case ENTER:
       snake.dir(1, 0);
       break;
     case UP_ARROW:
-      snake.dir(0, -1);
+      if (lastKey !== 40) {
+        snake.dir(0, -1);
+        lastKey = UP_ARROW;
+      }
+
       break;
     case DOWN_ARROW:
-      snake.dir(0, 1);
+      if (lastKey !== 38) {
+        snake.dir(0, 1);
+        lastKey = DOWN_ARROW;
+      }
+
       break;
     case RIGHT_ARROW:
-      snake.dir(1, 0);
+      if (lastKey !== 37) {
+        snake.dir(1, 0);
+        lastKey = RIGHT_ARROW;
+      }
       break;
     case LEFT_ARROW:
-      snake.dir(-1, 0);
+      if (lastKey !== 39) {
+        snake.dir(-1, 0);
+        lastKey = LEFT_ARROW;
+      }
+      break;
+
+    case 32: //SPACE BAR
+      snake.dir(0, 0);
+      noLoop();
       break;
     default:
       break;
