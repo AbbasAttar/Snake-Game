@@ -33,7 +33,6 @@ function keyPressed() {
 
     case 32: //SPACE BAR
       snake.dir(0, 0);
-      noLoop();
       break;
     default:
       break;
