@@ -1,5 +1,6 @@
 function keyPressed() {
   this.lastKey = 0;
+  document.getElementById("game-over").style.display = "none";
   switch (keyCode) {
     case ENTER:
       snake.dir(1, 0);

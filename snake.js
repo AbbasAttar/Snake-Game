@@ -68,7 +68,7 @@ function Snake(width, height) {
   };
 
   this.isNotDead = function (x, y) {
-    for (let i = 5; i < this.body.length; i++) {
+    for (let i = 2; i < this.body.length; i++) {
       if (x === this.body[i].x && y === this.body[i].y) {
         return false;
       }

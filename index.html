@@ -12,20 +12,20 @@
       <div class="title"><h1>Snake Game</h1></div>
 
       <div class="menu">
-        <div class="high-score">
-          <p>
-            HIGH SCORE:
-            <span id="high-score">0</span>
-          </p>
+        <div>
+          <p>HIGH SCORE: <span class="high-score">0</span></p>
         </div>
-        <div class="current-score">
-          <p>
-            CURRENT SCORE:
-            <span id="current-score">0</span>
-          </p>
+        <div>
+          <p>CURRENT SCORE: <span class="current-score">0</span></p>
         </div>
       </div>
     </header>
+    <div id="game-over">
+      <h1>GAME OVER</h1>
+      <p>HIGH SCORE: <span class="high-score">0</span></p>
+      <p>CURRENT SCORE: <span class="current-score">0</span></p>
+      <h3>Press 'Any key' to Restart</h3>
+    </div>
     <div id="sketch-div"></div>
     <script src="./board.js"></script>
     <script src="./movement.js"></script>

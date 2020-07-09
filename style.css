@@ -10,7 +10,7 @@
   align-content: center;
 }
 header {
-  width: 800px;
+  width: 790px;
   height: 6vh;
   margin: 5px auto;
   line-height: 6vh;
@@ -26,6 +26,19 @@ header {
   justify-content: space-between;
   /* border: 1px solid black; */
 }
+
+#game-over {
+  background: rgba(255, 255, 255, 0.5);
+  width: 400px;
+  height: 100px;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+}
+
 canvas {
   padding: 5px;
 }
