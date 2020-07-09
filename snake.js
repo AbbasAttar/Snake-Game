@@ -45,10 +45,11 @@ function Snake(width, height) {
   };
 
   this.show = function () {
-    fill(136, 202, 94);
+    fill(58, 207, 58);
     for (let i = 1; i < this.body.length; i++) {
       rect(this.body[i].x, this.body[i].y, scl, scl);
     }
+    fill(34, 139, 34);
     rect(this.body[0].x, this.body[0].y, scl, scl);
   };
 
@@ -67,7 +68,7 @@ function Snake(width, height) {
   };
 
   this.isNotDead = function (x, y) {
-    for (let i = 3; i < this.body.length; i++) {
+    for (let i = 5; i < this.body.length; i++) {
       if (x === this.body[i].x && y === this.body[i].y) {
         return false;
       }
@@ -77,7 +78,7 @@ function Snake(width, height) {
 
   this.reset = function () {
     this.body = [];
-    this.body.push(createVector(0, 0));
+    this.body.push(createVector(this.width / 4, this.height / 2));
     this.dir(0, 0);
   };
 }

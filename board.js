@@ -35,6 +35,7 @@ function draw() {
     }
     fill(255, 0, 100);
     rect(food.x, food.y, scl, scl);
+    document.getElementById("score").innerHTML = snake.body.length - 1;
   } else {
     snake.reset();
   }

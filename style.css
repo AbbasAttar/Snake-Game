@@ -9,6 +9,14 @@
   justify-content: center;
   align-content: center;
 }
+header {
+  width: 800px;
+  height: 6vh;
+  margin: 5px auto;
+  line-height: 6vh;
+  display: flex;
+  justify-content: space-between;
+}
 
 canvas {
   padding: 5px;
