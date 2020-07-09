@@ -17,7 +17,15 @@ header {
   display: flex;
   justify-content: space-between;
 }
-
+.title {
+  flex: 1;
+}
+.menu {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  /* border: 1px solid black; */
+}
 canvas {
   padding: 5px;
 }

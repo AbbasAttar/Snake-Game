@@ -1,7 +1,8 @@
 let snake;
 let scl = 20;
 let food;
-
+let cs = document.getElementById("current-score");
+let hs = document.getElementById("high-score");
 function setup() {
   let canvas = createCanvas(800, 600);
   canvas.parent("sketch-div");
@@ -35,7 +36,10 @@ function draw() {
     }
     fill(255, 0, 100);
     rect(food.x, food.y, scl, scl);
-    document.getElementById("score").innerHTML = snake.body.length - 1;
+    cs.innerHTML = snake.body.length - 1;
+    if (snake.body.length - 1 >= hs.innerHTML) {
+      hs.innerHTML = snake.body.length - 1;
+    }
   } else {
     snake.reset();
   }
