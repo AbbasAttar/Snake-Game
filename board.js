@@ -1,9 +1,9 @@
 let snake;
 let scl = 20;
 let food;
-let cs = document.getElementsByClassName("current-score")[0];
+let cs0 = document.getElementsByClassName("current-score")[0];
 let cs1 = document.getElementsByClassName("current-score")[1];
-let hs = document.getElementsByClassName("high-score")[0];
+let hs0 = document.getElementsByClassName("high-score")[0];
 let hs1 = document.getElementsByClassName("high-score")[1];
 let go = document.getElementById("game-over");
 function setup() {
@@ -13,6 +13,12 @@ function setup() {
   frameRate(10);
   snake.dir(0, 0);
   pickLocation();
+  if (!localStorage.getItem("HS")) {
+    localStorage.setItem("HS", 0);
+  }
+  hs0.innerHTML = localStorage.getItem("HS");
+  hs1.innerHTML = localStorage.getItem("HS");
+  // console.log(hs, hs1);
 }
 
 function pickLocation() {
@@ -32,18 +38,21 @@ function pickLocation() {
 function draw() {
   background(51);
   if (snake.isNotDead(snake.body[0].x, snake.body[0].y)) {
-    snake.update();
+    if (snake.xSpeed !== 0 || snake.ySpeed !== 0) {
+      snake.update();
+    }
     snake.show();
     if (snake.eat(food)) {
       pickLocation();
     }
     fill(255, 0, 100);
     rect(food.x, food.y, scl, scl);
-    cs.innerHTML = snake.body.length - 1;
+    cs0.innerHTML = snake.body.length - 1;
     cs1.innerHTML = snake.body.length - 1;
-    if (snake.body.length - 1 >= hs.innerHTML) {
-      hs.innerHTML = snake.body.length - 1;
-      hs1.innerHTML = snake.body.length - 1;
+    if (snake.body.length - 1 >= hs0.innerHTML) {
+      localStorage.setItem("HS", snake.body.length - 1);
+      hs0.innerHTML = localStorage.getItem("HS");
+      hs1.innerHTML = localStorage.getItem("HS");
     }
   } else {
     go.style.display = "block";
