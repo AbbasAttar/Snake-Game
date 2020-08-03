@@ -32,6 +32,7 @@ function direction(key) {
 
 function keyPressed() {
   document.getElementById("game-over").style.display = "none";
+  document.getElementsByClassName("new-game")[0].style.display = "none";
   switch (keyCode) {
     case ENTER:
       if (this.lastKey === undefined) {

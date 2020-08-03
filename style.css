@@ -32,8 +32,9 @@ header {
   /* border: 1px solid black; */
 }
 
-#game-over {
-  background: rgba(255, 255, 255, 0.5);
+#game-over,
+.new-game {
+  background: rgba(255, 255, 255, 0.3);
   width: 400px;
   height: 120px;
   text-align: center;
@@ -41,8 +42,17 @@ header {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  display: none;
   padding: 5px;
+}
+
+#game-over {
+  display: none;
+}
+
+.new-game {
+  /* display:none; */
+  border: 1px solid black;
+  line-height: 110px;
 }
 
 canvas {

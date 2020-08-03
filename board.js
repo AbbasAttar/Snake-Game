@@ -6,6 +6,8 @@ let cs1 = document.getElementsByClassName("current-score")[1];
 let hs0 = document.getElementsByClassName("high-score")[0];
 let hs1 = document.getElementsByClassName("high-score")[1];
 let go = document.getElementById("game-over");
+let ng = document.getElementsByClassName("new-game")[0];
+
 function setup() {
   let canvas = createCanvas(800, 600);
   canvas.parent("sketch-div");
@@ -18,6 +20,8 @@ function setup() {
   }
   hs0.innerHTML = localStorage.getItem("HS");
   hs1.innerHTML = localStorage.getItem("HS");
+  ng.style.display = "block";
+
   // console.log(hs, hs1);
 }
 
