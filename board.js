@@ -2,7 +2,6 @@ let snake;
 let scl = 20;
 let food;
 let cs0 = document.getElementsByClassName("current-score")[0];
-let cs1 = document.getElementsByClassName("current-score")[1];
 let hs0 = document.getElementsByClassName("high-score")[0];
 let hs1 = document.getElementsByClassName("high-score")[1];
 let go = document.getElementById("game-over");
@@ -52,7 +51,7 @@ function draw() {
     fill(255, 0, 100);
     rect(food.x, food.y, scl, scl);
     cs0.innerHTML = snake.body.length - 1;
-    cs1.innerHTML = snake.body.length - 1;
+
     if (snake.body.length - 1 >= hs0.innerHTML) {
       localStorage.setItem("HS", snake.body.length - 1);
       hs0.innerHTML = localStorage.getItem("HS");
